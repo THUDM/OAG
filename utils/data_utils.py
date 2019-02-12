@@ -1,9 +1,11 @@
 from os.path import join
 import os
+from nltk.corpus import stopwords
 import codecs
 import json
 import pickle
 import logging
+
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format='%(asctime)s %(message)s')  # include timestamp
@@ -40,3 +42,36 @@ def dump_data(obj, wfpath, wfname):
 def load_data(rfpath, rfname):
     with open(os.path.join(rfpath, rfname), 'rb') as rf:
         return pickle.load(rf)
+
+
+def load_json_lines(fpath, fname):
+    items = []
+    with codecs.open(join(fpath, fname), 'r', encoding='utf-8') as rf:
+        for line in rf:
+            paper = json.loads(line)
+            paper['title'] = paper['title'].lower()
+            items.append(paper)
+    return items
+
+
+def get_words(content, window=None, remove_stopwords=True):
+    import re
+    content = content.lower()
+    r = re.compile(r'[a-z]+')
+    words = re.findall(r, content)
+    if remove_stopwords:
+        stpwds = stopwords.words('english')
+        words = [w for w in words if w not in stpwds]
+    if window is not None:
+        words = words[:window]
+    return words
+
+
+def subname_equal(n1, n2):
+    return 1 if n1 == n2 else -1
+
+
+def remove_stopwords(word_list):
+    stpwds = stopwords.words('english')
+    words = [w for w in word_list if w not in stpwds]
+    return words

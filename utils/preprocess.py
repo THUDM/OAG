@@ -204,3 +204,16 @@ def raw_data_loader():
         data_mag.append(mag)
         data_aminer.append(aminer)
     return data_mag, data_aminer, labels
+
+
+def scale_matrix(matrix):
+    matrix -= np.mean(matrix, axis=0)
+    size = matrix.shape[0]
+    return np.array(matrix).reshape(size, size, 1)
+
+
+def encode_binary_codes(b):
+    encoded_codes = ''.join('1' if x else '0' for x in b)
+    v_hex = hex(int(encoded_codes, 2))
+    # print(v_hex)
+    return v_hex[2:]

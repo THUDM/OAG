@@ -16,6 +16,8 @@ SAVED_MODEL = join(DATA_DIR, 'saved_model')
 TRAIN_DATA = join(DATA_DIR, 'train_data')
 RESULT = join(DATA_DIR, 'result')
 RAW_TRAIN_DATA = join(DATA_DIR, 'raw_train_data')
+PAPER_DIR = join(DATA_DIR, 'papers')
+
 
 AUTHOR_TYPE = 0
 PAPER_TYPE = 1
