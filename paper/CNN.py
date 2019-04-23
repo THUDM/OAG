@@ -1,4 +1,5 @@
 from os.path import join
+import os
 import tensorflow as tf
 import tflearn
 import numpy as np
@@ -25,6 +26,7 @@ class MCNNModel:
     paper_data_utils = PaperDataUtils()
     matrices_dir = join(settings.DATA_DIR, 'network-input')
     model_dir = join(settings.TRAIN_DIR, 'model')
+    os.makedirs(matrices_dir, exist_ok=True)
 
     def __init__(self, add_author=True, title_mat_size=7, author_mat_size=4, ii_window=5):
         self.add_author = add_author
@@ -223,7 +225,7 @@ class MCNNModel:
         X_title, X_title_val, X_author, X_author_val, Y, Y_val = self.load_network_input('train', fold)
         model = self.create_model_for_multiple_input()
         model.fit([X_title, X_author], Y, validation_set=([X_title_val, X_author_val], Y_val),
-                  batch_size=100, n_epoch=10, run_id=str(fold), show_metric=True)
+                  batch_size=100, n_epoch=1, run_id=str(fold), show_metric=True)
         outpath = join(self.model_dir, 'cnn_model_{}.mod'.format(fold))
         model.save(outpath)
 
@@ -271,5 +273,5 @@ class MCNNModel:
 
 if __name__ == '__main__':
     mcnn = MCNNModel()
-    mcnn.train(0)
+    # mcnn.train(0)
     mcnn.evaluate(0)

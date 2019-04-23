@@ -11,6 +11,7 @@ class PaperDataUtils:
     paper_dir = settings.PAPER_DIR
     pairs_dir = join(settings.DATA_DIR, 'pairs')
     inverted_index_dir = join(settings.DATA_DIR, 'inverted-index')
+    os.makedirs(inverted_index_dir, exist_ok=True)
 
     def __init__(self, ii_window=5):
         self.ii_window = ii_window
@@ -79,7 +80,10 @@ class PaperDataUtils:
         return id2paper
 
     def load_id2papers(self, fold):
-        return data_utils.load_json(self.paper_dir, 'clean-id2paper-test-{}.json'.format(fold))
+        if os.path.isfile(join(self.pairs_dir, 'clean-id2paper-test-{}.json'.format(fold))):
+            return data_utils.load_json(self.paper_dir, 'clean-id2paper-test-{}.json'.format(fold))
+        else:
+            return self.gen_id2papers(fold)
 
     def get_candidates_by_ii(self, npaper, word2ids):
         title = npaper['title']
