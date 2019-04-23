@@ -13,6 +13,7 @@ LARGE_GRAPH_DIR = join(OAG_SHARE_DIR, 'large-cross-graph')
 TRAIN_DIR = join(DATA_DIR, 'train')
 
 SAVED_MODEL = join(DATA_DIR, 'saved_model')
+os.makedirs(SAVED_MODEL, exist_ok=True)
 TRAIN_DATA = join(DATA_DIR, 'train_data')
 RESULT = join(DATA_DIR, 'result')
 RAW_TRAIN_DATA = join(DATA_DIR, 'raw_train_data')
