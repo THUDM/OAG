@@ -1,3 +1,4 @@
+import os
 from gensim.models.doc2vec import Doc2Vec
 from collections import namedtuple
 from utils.settings import *
@@ -15,6 +16,7 @@ class Title2Vec:
     train_data_dir = join(DATA_DIR, 'doc2vec')
     train_data_fname = 'doc2vec-train-corpus.json'
     model_dir = join(TRAIN_DIR, 'doc2vec')
+    os.makedirs(model_dir, exist_ok=True)
     model_fname = 'doc2vec.mod'
     paper_dir = PAPER_DIR
     vectors_dir = join(OUT_DIR, 'doc2vec')

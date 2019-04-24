@@ -30,6 +30,7 @@ class MHash:
     title_bit = 20
     other_bit = 26
     para_dir = join(DATA_DIR, 'hash')
+    os.makedirs(para_dir, exist_ok=True)
     # distance_dir = join(OUT_DIR, 'distance')
     # ranking_dir = join(OUT_DIR, 'ranking')
     hash_table_dir = join(OUT_DIR, 'hash_table')
@@ -322,7 +323,7 @@ class MHash:
 
 
 if __name__ == '__main__':
-    mhash = MHash(with_all_attr=True)
+    mhash = MHash(with_all_attr=False)
     # mhash.prepare_LSH_parameters('test', 0)
     # mhash.vectors2hash_LSH('test', 0)
     # x = [True, False]
@@ -334,7 +335,7 @@ if __name__ == '__main__':
     # mhash.dump_hash_tables('test', 0)
     # mhash.authors2binary_matrix([['jie tang', 'fanjin zhang'], ['jie tang', 'jing zhang']])
     # mhash.construct_other_features('test', 0)
-    # mhash.evaluate_hashtables('test', 0)
+    mhash.evaluate_hashtables('test', 0)
 
     # x = np.array([[1,0,0], [1,0,1]])
     # x = np.zeros((9234, 260))
