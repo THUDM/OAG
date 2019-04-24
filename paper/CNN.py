@@ -274,4 +274,4 @@ class MCNNModel:
 if __name__ == '__main__':
     mcnn = MCNNModel()
     mcnn.train(0)
-    # mcnn.evaluate(0)
+    mcnn.evaluate(0)
