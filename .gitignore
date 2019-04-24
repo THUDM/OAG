@@ -2,7 +2,6 @@
 *.csv
 .idea/
 out/
-*.txt
 *.json
 data/
 
