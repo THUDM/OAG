@@ -1,5 +1,7 @@
 # OAG
 
+**Under Construction... The cleaned up code and the dataset will be released before August.**
+
 ## Requirements
 - Linux
 - python 3
