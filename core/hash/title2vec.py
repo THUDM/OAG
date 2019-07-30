@@ -120,6 +120,6 @@ class Title2Vec:
 
 if __name__ == '__main__':
     title2vec = Title2Vec()
-    # title2vec.train()
+    title2vec.train()
     title2vec.prepare_paper_title_to_vectors()
     logger.info('done')
