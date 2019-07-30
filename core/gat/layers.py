@@ -1,4 +1,3 @@
-import numpy as np
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -73,9 +72,9 @@ class BatchMultiHeadGraphAttention(nn.Module):
         h_prime = torch.matmul(h.unsqueeze(1), self.w) # bs x n_head x n x f_out
         v_types = v_types.unsqueeze(1)
         v_types = v_types.expand(-1, self.n_head, -1, -1)
-        attn_src = torch.matmul(F.tanh(h_prime), self.a_src) # bs x n_head x n x 1
+        attn_src = torch.matmul(torch.tanh(h_prime), self.a_src) # bs x n_head x n x 1
         attn_src = torch.sum(torch.mul(attn_src, v_types),  dim=3, keepdim=True)
-        attn_dst = torch.matmul(F.tanh(h_prime), self.a_dst) # bs x n_head x n x 1
+        attn_dst = torch.matmul(torch.tanh(h_prime), self.a_dst) # bs x n_head x n x 1
         attn_dst = torch.sum(torch.mul(attn_dst, v_types), dim=3, keepdim=True)
         attn = attn_src.expand(-1, -1, -1, n) + attn_dst.expand(-1, -1, -1, n).permute(0, 1, 3, 2) # bs x n_head x n x n
 
@@ -86,6 +85,6 @@ class BatchMultiHeadGraphAttention(nn.Module):
         attn = self.dropout(attn)
         output = torch.matmul(attn, h_prime) # bs x n_head x n x f_out
         if self.bias is not None:
-            return output + self.bias, attn
+            return output + self.bias
         else:
-            return output, attn
+            return output

@@ -1,10 +1,4 @@
 # Byte-compiled / optimized / DLL files
-*.csv
-.idea/
-out/
-*.json
-data/
-
 __pycache__/
 *.py[cod]
 *$py.class
