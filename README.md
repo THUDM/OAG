@@ -30,3 +30,24 @@ pip install -r requirements.txt
 ### Dataset
 
 The dataset can be downloaded from [here1]() or [here2](). Unzip the file and put the _data_ directory into project directory.
+
+## How to run
+```bash
+cd $project_path
+export PYTHONPATH="$project_path:$PYTHONPATH"
+export CUDA_VISIBLE_DEVICES='?'  # specify which GPU(s) to be used
+cd core
+
+# venue linking
+python rnn/train.py
+
+# paper linking
+### LSH method
+python hash/title2vec.py  # train doc2vec model
+python hash/hash.py
+### CNN method
+python cnn/train.py
+
+# author linking
+python gat/preprocessing.py
+python gat/train.py
