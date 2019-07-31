@@ -51,3 +51,16 @@ python cnn/train.py
 # author linking
 python gat/preprocessing.py
 python gat/train.py
+
+## Cite
+
+Please cite our paper if you use this code in your own work:
+
+```
+@inproceedings{zhang2019oag,
+  title={OAG: Toward Linking Large-scale Heterogeneous Entity Graphs.},
+  author={Zhang, Fanjin and Liu, Xiao and Tang, Jie and Dong, Yuxiao and Yao, Peiran and Zhang, Jie and Gu, Xiaotao and Wang, Yan and Shao, Bin and Li, Rui and Wang, Kuansan},
+  booktitle={Proceedings of the 25th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining (KDD’19)},
+  year={2019}
+}
+```
