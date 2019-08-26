@@ -29,7 +29,7 @@ pip install -r requirements.txt
 ```
 ### Dataset
 
-The dataset can be downloaded from [OneDrive](https://mailstsinghuaeducn-my.sharepoint.com/:u:/g/personal/zfj17_mails_tsinghua_edu_cn/ES2s-PhyDeREs1zk0qdnA08BhzBZRSzrzKCqGAjEvdGBVQ?e=6U3bOd) or [BaiduPan](https://pan.baidu.com/s/1ZkIs89yy9TrDMssZ3ceeVw) (with password gzpp). Unzip the file and put the _data_ directory into project directory.
+The dataset can be downloaded from [OneDrive](https://mailstsinghuaeducn-my.sharepoint.com/:u:/g/personal/zfj17_mails_tsinghua_edu_cn/ES2s-PhyDeREs1zk0qdnA08BhzBZRSzrzKCqGAjEvdGBVQ?e=6U3bOd), [Tsinghua Cloud](https://cloud.tsinghua.edu.cn/f/1141adb4aac240d7a49d/?dl=1) or [BaiduPan](https://pan.baidu.com/s/1ZkIs89yy9TrDMssZ3ceeVw) (with password gzpp). Unzip the file and put the _data_ directory into project directory.
 
 ## How to run
 ```bash
