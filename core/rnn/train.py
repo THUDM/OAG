@@ -22,7 +22,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s %(message)s')  # inc
 parser = argparse.ArgumentParser()
 parser.add_argument('--model', type=str, default='rnn', help="models used")
 parser.add_argument('--no-cuda', action='store_true', default=False, help='Disables CUDA training.')
-parser.add_argument('--seed', type=int, default=42, help='Random seed.')
+parser.add_argument('--seed', type=int, default=37, help='Random seed.')
 parser.add_argument('--epochs', type=int, default=30, help='Number of epochs to train.')
 parser.add_argument('--lr', type=float, default=5e-2, help='Initial learning rate.')
 parser.add_argument('--weight-decay', type=float, default=1e-3,
@@ -89,50 +89,6 @@ class Metrics(Callback):
             "test_set:\nbest_thr:{:2f}\t precision:{:4f}\trecall:{:4f}\tf1score:{:4f}\n".format(threshold, precision,
                                                                                                 recall, f1))
         return
-
-
-"""
-def evaluate(loader, model, thr=None, return_best_thr=False, args=args):
-    model.eval()
-    total = 0.
-    loss = 0.
-    y_true, y_pred, y_score = [], [], []
-
-    for ibatch, batch in enumerate(loader):
-        labels = batch[-1]
-        if args.cuda:
-            batch = [data.cuda() for data in batch]
-        output = model(batch[0], batch[1], batch[2], batch[3], batch[4], batch[5])
-        y_true += labels.data.tolist()
-        y_pred += output.max(1)[1].data.tolist()
-        y_score += output[:, 1].data.tolist()
-        total += len(labels)
-
-    model.train()
-
-    if thr is not None:
-        logger.info("using threshold %.4f", thr)
-        y_score = np.array(y_score)
-        y_pred = np.zeros_like(y_score)
-        y_pred[y_score > thr] = 1
-
-    prec, rec, f1, _ = precision_recall_fscore_support(y_true, y_pred, average="binary")
-    auc = roc_auc_score(y_true, y_score)
-    logger.info("loss: %.4f AUC: %.4f Prec: %.4f Rec: %.4f F1: %.4f",
-                loss / total, auc, prec, rec, f1)
-
-    if return_best_thr:  # valid
-        precs, recs, thrs = precision_recall_curve(y_true, y_score)
-        f1s = 2 * precs * recs / (precs + recs)
-        f1s = f1s[:-1]
-        thrs = thrs[~np.isnan(f1s)]
-        f1s = f1s[~np.isnan(f1s)]
-        best_thr = thrs[np.argmax(f1s)]
-        logger.info("best threshold=%4f, f1=%.4f", best_thr, np.max(f1s))
-        return best_thr
-    else:
-        return None
-"""
 
 
 def train(train_loader, test_loader, model, args=args):
